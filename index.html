@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notes App</title>
+
+    <style>
+        .notes-items{
+            border: 4px double #EECEB9;
+            padding: 5px;
+            margin: 5px;
+            border-radius: 5px;
+            background-color: #FEFBD8;
+            color: #9c7c9f;
+        }
+    </style>
 </head>
 <body>
     <h1>Notes App</h1>
@@ -13,7 +24,11 @@
     </div>
 
     <script>
-        const tasks = ["Practice JS examples", "Buy NoteBooks", "Go to the gym"];
+        const tasks = ["Practice JS examples",
+        "Buy NoteBooks",
+        "Go to the gym",
+        "Watch a movie",
+        "Organize clothes in closet"];
 
         function loadTasks(){
             const tasksContainer = document.getElementById("tasks-container");
@@ -21,7 +36,7 @@
             for(const task of tasks)
         {
             tasksContainer.innerHTML += `
-            <div> 
+            <div class = "notes-items"> 
                 ${task} 
             </div>
             `
