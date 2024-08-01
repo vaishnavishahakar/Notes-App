@@ -40,16 +40,29 @@
 
     <script>
         const tasks = [
-            "Practice JS examples",
-            "HTML Notes",
-            "CSS Implementation",
-            "Javascript Notes",
-            "React JS Notes"];
+            // "Practice JS examples",
+            // "HTML Notes",
+            // "CSS Implementation",
+            // "Javascript Notes",
+            // "React JS Notes"
+         ];
+
+        function loadFromLocalStorage() {
+            const allTasks = JSON.parse(localStorage.getItem('allTasks'));
+
+            if(allTasks){
+                tasks.push(...allTasks)
+            }
+            loadTasks();
+        }
+         loadFromLocalStorage();
 
         function loadTasks() {
+            localStorage.setItem('allTasks', JSON.stringify(tasks));
+
             const tasksContainer = document.getElementById("tasks-container");
             tasksContainer.innerHTML = '';
-            
+
             for (const task of tasks) {
                 tasksContainer.innerHTML += `
             <div class = "notes-items"> 
@@ -61,7 +74,7 @@
             `
             }
         }
-        loadTasks();
+    //    loadTasks();
 
         function deleteTask(task){
             const taskIndex = tasks.indexOf(task);
