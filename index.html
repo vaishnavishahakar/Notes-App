@@ -28,14 +28,39 @@
             height: 30px;
             width: 70px;
         }
+
+        .tasks-container {
+            height: 250px;
+            overflow-y: scroll;
+        }
+        .task-input-container{
+            display: flex;
+            justify-content: space-around;
+            margin: 10px;
+        }
+        .task-input{
+            width: 20%;
+            border-radius: 10px;
+            padding: 5px;
+        }
+        .btn-add{
+            border-radius: 40px;
+            background-color: #9c7c9f;
+            padding: 5px 30px;
+            border: none;
+        }
+
     </style>
 </head>
 
 <body>
     <h1>Notes App</h1>
 
-    <div id="tasks-container">
+    <div id="tasks-container" class="tasks-container"></div>
 
+    <div class="task-input-container">
+        <input type="text" id="task-input" placeholder="Enter a task" class="task-input">
+        <button onclick="addTask()" class="btn-add">Add Task</button>
     </div>
 
     <script>
@@ -45,17 +70,17 @@
             // "CSS Implementation",
             // "Javascript Notes",
             // "React JS Notes"
-         ];
+        ];
 
         function loadFromLocalStorage() {
             const allTasks = JSON.parse(localStorage.getItem('allTasks'));
 
-            if(allTasks){
+            if (allTasks) {
                 tasks.push(...allTasks)
             }
             loadTasks();
         }
-         loadFromLocalStorage();
+        loadFromLocalStorage();
 
         function loadTasks() {
             localStorage.setItem('allTasks', JSON.stringify(tasks));
@@ -74,15 +99,31 @@
             `
             }
         }
-    //    loadTasks();
 
-        function deleteTask(task){
+        function deleteTask(task) {
             const taskIndex = tasks.indexOf(task);
             tasks.splice(taskIndex, 1);
 
             loadTasks();
         }
 
+        function addTask() {
+            const taskInputElement = document.getElementById('task-input');
+            const task = taskInputElement.value;
+
+            if (!task) {
+                alert('Please Enter a Task');
+                return;
+            }
+            tasks.push(task);
+            loadTasks();
+
+            //add notes on top
+            // tasks.unshift(task);
+            // loadTasks();
+
+            taskInputElement.value = '';
+        }
 
     </script>
 </body>
