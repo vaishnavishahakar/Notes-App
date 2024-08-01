@@ -20,7 +20,11 @@
 
             for(const task of tasks)
         {
-            console.log(task);
+            tasksContainer.innerHTML += `
+            <div> 
+                ${task} 
+            </div>
+            `
         }
         }
         loadTasks();
